@@ -70,6 +70,7 @@ DEFAULT_REQUEST_HEADERS = {
 ITEM_PIPELINES = {
    # 'zhihu.pipelines.ZhihuPipeline': 300,
    'zhihu.pipelines.MongoPipeline': 300,
+     'scrapy_redis.pipelines.RedisPipeline': 301,
 
 }
 
@@ -96,3 +97,12 @@ ITEM_PIPELINES = {
 
 MONGO_URI="localhost"
 MONGO_DATABASE="zhihu"
+
+SCHEDULER = "scrapy_redis.scheduler.Scheduler"
+
+DUPEFILTER_CLASS = "scrapy_redis.dupefilter.RFPDupeFilter"
+
+# SCHEDULER_PERSIST=True #爬取的requests以及dupefilter会保存在数据库中
+
+REDIS_URL = 'redis://root:bright@192.168.0.104:6379'
+# REDIS_URL = 'redis:127.0.0.1:6379'
